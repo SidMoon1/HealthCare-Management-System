@@ -31,6 +31,7 @@ Appointment Scheduling: Patients can search for available doctors based on speci
 Data Management and Security: The application relies on Java Servlets for backend operations such as user authentication, data management, and handling appointment-related actions. JSP is used for dynamic page generation. All data is securely stored and managed in a MySQL database.
 
 
+```
 ├── src
 │   ├── main
 │   │   ├── java
@@ -50,9 +51,11 @@ Data Management and Security: The application relies on Java Servlets for backen
 │   ├── doctor_login.jsp                 # Doctor login page
 │   ├── user_login.jsp                   # Patient login page
 │   ├── signup.jsp                       # Patient registration page
+```
 │   ├── user_appointment.jsp             # Appointment booking page
 │   ├── view_appointment.jsp             # View appointment details page
 │   ├── navbar.jsp                       # Common navigation bar (used across pages)
 │   ├── footer.jsp                       # Common footer (used across pages)
 │   └── allcss.jsp                       # Global CSS file for styling
 └── .gitignore                           # Git ignore file (if using version control)
+(```
