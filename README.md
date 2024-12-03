@@ -32,29 +32,76 @@ Data Management and Security: The application relies on Java Servlets for backen
 
 
 ```
-├── src
-│   ├── main
-│   │   ├── java
-│   │   │   └── com.example.healthcare
-│   │   │       ├── controller          # Java Servlets for handling requests and business logic
-│   │   │       ├── model               # Entity classes for patients, doctors, appointments, etc.
-│   │   │       ├── dao                 # Database access objects (DAO) for database operations
-│   │   │       └── service             # Business logic related to appointments and user management
-│   │   └── resources
-│   │       ├── static                  # Static frontend assets (HTML, CSS, JavaScript)
-│   │       ├── templates               # JSP templates
-├── README.md                           # Project documentation
-├── pom.xml                              # Project dependencies and build configuration (if using Maven)
-├── sql                                  # SQL files for database schema and initial setup
-├── webapp                               # Frontend pages and resources
-│   ├── admin_login.jsp                  # Admin login page
-│   ├── doctor_login.jsp                 # Doctor login page
-│   ├── user_login.jsp                   # Patient login page
-│   ├── signup.jsp                       # Patient registration page
-│   ├── user_appointment.jsp             # Appointment booking page
-│   ├── view_appointment.jsp             # View appointment details page
-│   ├── navbar.jsp                       # Common navigation bar (used across pages)
-│   ├── footer.jsp                       # Common footer (used across pages)
-│   └── allcss.jsp                       # Global CSS file for styling
-└── .gitignore                           # Git ignore file (if using version control)
+.settings                           # IDE-specific configuration files (e.g., Eclipse, IntelliJ)
+src/main
+├── java/com
+│   ├── admin/servlet                # Admin-related servlets that handle admin functionality (e.g., login, doctor management)
+│   │   ├── AddDoctor.java           # Handles adding a new doctor
+│   │   ├── AddSpecialist.java       # Handles adding a new specialist
+│   │   ├── AdminLogin.java          # Handles admin login functionality
+│   │   ├── AdminLogout.java         # Handles admin logout functionality
+│   │   ├── DeleteDoctor.java        # Handles deleting a doctor
+│   │   ├── UpdateDoctor.java        # Handles updating doctor information
+│   ├── dao                          # Data Access Object (DAO) classes to handle database interactions
+│   │   ├── AppointmentDAO.java      # Handles database operations related to appointments
+│   │   ├── DoctorDao.java           # Handles database operations related to doctors
+│   │   ├── SpecialistDao.java       # Handles database operations related to specialists
+│   │   ├── UserDao.java             # Handles database operations related to users
+│   ├── db                           # Classes related to database connections
+│   │   └── DBConnect.java           # Manages database connection
+│   ├── doctor/servlet               # Doctor-related servlets for doctor-specific functionality
+│   │   ├── DoctorPasswordChange.java # Allows a doctor to change their password
+│   │   ├── DoctorLogin.java         # Handles doctor login functionality
+│   │   ├── DoctorLogout.java        # Handles doctor logout functionality
+│   │   ├── EditProfile.java         # Allows a doctor to edit their profile
+│   │   ├── UpdateStatus.java        # Allows a doctor to update their status (e.g., available or not)
+│   ├── entity                       # Entity classes representing the data model for the application
+│   │   ├── Appointment.java         # Represents an appointment entity in the system
+│   │   ├── Doctor.java              # Represents a doctor entity in the system
+│   │   ├── Specialist.java          # Represents a specialist entity in the system
+│   │   └── User.java                # Represents a user entity in the system
+│   ├── user/servlet                 # User-related servlets that handle user functionality
+│   │   ├── AppointmentServlet.java  # Handles user appointment actions (e.g., book, view, cancel)
+│   │   ├── UserLogin.java           # Handles user login functionality
+│   │   ├── UserLogout.java          # Handles user logout functionality
+│   │   ├── UserRegister.java        # Handles user registration functionality
+│   │   └── ChangePassword.java      # Allows a user to change their password
+webapp
+├── WEB-INF
+│   ├── admin                        # JSP files related to the admin section of the application
+│   │   ├── doctor.jsp               # Displays doctor information to the admin
+│   │   ├── edit_doctor.jsp          # Allows the admin to edit doctor details
+│   │   ├── index.jsp                # Admin homepage
+│   │   ├── navbar.jsp               # Navbar used in the admin section
+│   │   ├── patient.jsp              # Displays patient information to the admin
+│   │   └── view_doctor.jsp          # Admin view of doctor details
+│   ├── component                    # Shared JSP components (e.g., CSS, footer)
+│   │   ├── allcss.jsp               # Contains global CSS for styling
+│   │   ├── footer.jsp               # Footer section for all pages
+│   │   └── navbar.jsp               # Shared navbar component for navigation
+│   ├── doctor                       # JSP files related to the doctor section of the application
+│   │   ├── comment.jsp              # Allows doctors to add comments
+│   │   ├── edit_profile.jsp         # Allows doctors to edit their profile
+│   │   ├── index.jsp                # Doctor homepage
+│   │   ├── navbar.jsp               # Navbar used in the doctor section
+│   │   ├── patient.jsp              # Displays patient information to the doctor
+│   ├── img                          # Image resources
+│   ├── Schema.sql                   # SQL file for setting up the database schema (tables, relationships)
+│   ├── admin_login.jsp              # Login page for the admin section
+│   ├── change_password.jsp          # Page for changing the password (user/doctor/admin)
+│   ├── doctor_login.jsp             # Login page for doctors
+│   ├── edit_profile.jsp             # Page for editing user/doctor profile
+│   ├── index.jsp                    # Homepage for the user/doctor/admin section
+│   ├── search.jsp                   # Page for searching doctors and specialists
+│   ├── signup.jsp                   # User registration page
+│   ├── user_appointment.jsp         # User appointment management page
+│   ├── user_login.jsp               # Login page for users
+│   └── view_appointment.jsp         # Page for viewing user appointments
+target
+├── .classpath                       # Classpath file for project dependencies
+├── .gitignore                       # Git ignore file to exclude files from version control
+├── .project                         # Project configuration file (IDE-specific)
+├── README.md                        # Project documentation file
+└── pom.xml                          # Maven project configuration file (dependencies, build settings)
+
 ```
