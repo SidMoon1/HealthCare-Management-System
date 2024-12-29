@@ -44,9 +44,13 @@ src/main
 │   │   ├── UpdateDoctor.java        # Handles updating doctor information
 │   ├── dao                          # Data Access Object (DAO) classes to handle database interactions
 │   │   ├── AppointmentDAO.java      # Handles database operations related to appointments
+│   │   ├── AppointmentDAOTest.java  # Unit test class for AppointmentDAO
 │   │   ├── DoctorDao.java           # Handles database operations related to doctors
+│   │   ├── DoctorDaoTest.java       # Unit test class for DoctorDao
 │   │   ├── SpecialistDao.java       # Handles database operations related to specialists
+│   │   ├── SpecialistDaoTest.java   # Unit test class for SpecialistDao
 │   │   ├── UserDao.java             # Handles database operations related to users
+│   │   ├── UserDaoTest.java         # Unit test class for UserDao
 │   ├── db                           # Classes related to database connections
 │   │   └── DBConnect.java           # Manages database connection
 │   ├── doctor/servlet               # Doctor-related servlets for doctor-specific functionality
