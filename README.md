@@ -29,13 +29,6 @@ Doctor Management: Admin users can add and manage doctor profiles, specifying es
 Appointment Scheduling: Patients can search for available doctors based on specialty and schedule appointments. Each appointment is recorded with details such as date, doctor, and patient.
 
 Data Management and Security: The application relies on Java Servlets for backend operations such as user authentication, data management, and handling appointment-related actions. JSP is used for dynamic page generation. All data is securely stored and managed in a MySQL database.
-
-Screenshots:-
-![p1](https://github.com/user-attachments/assets/8664b788-5526-4481-bf85-0e09871b4303)
-
-
-
-
 ```
 .settings                           # IDE-specific configuration files (e.g., Eclipse, IntelliJ)
 src/main
@@ -114,3 +107,10 @@ target
 └── pom.xml                          # Maven project configuration file (dependencies, build settings)
 
 ```
+Screenshots:-
+![p1](https://github.com/user-attachments/assets/8664b788-5526-4481-bf85-0e09871b4303)
+![doc1](https://github.com/user-attachments/assets/7f8b1af7-ae43-4fd7-ab0c-1ec6ee8325b6)
+![a1](https://github.com/user-attachments/assets/b950829c-c393-4212-94a8-66a67cba1e84)
+![d1](https://github.com/user-attachments/assets/2182f208-38d7-4db8-8ba4-b56a4e209bcb)
+
+
