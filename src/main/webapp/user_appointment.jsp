@@ -24,13 +24,93 @@
             background-size: cover;
             background-repeat: no-repeat;
         }
+        .error-message {
+            color: red;
+            font-size: 0.9em;
+        }
     </style>
+    <script>
+        function validateAppointmentForm() {
+            // Get form field values
+            const fullname = document.getElementById("fullname").value.trim();
+            const age = document.getElementById("age").value.trim();
+            const appointDate = document.getElementById("appoint_date").value.trim();
+            const email = document.getElementById("email").value.trim();
+            const phno = document.getElementById("phno").value.trim();
+            const diseases = document.getElementById("diseases").value.trim();
+            const doctor = document.getElementById("doctor").value.trim();
+            const address = document.getElementById("address").value.trim();
+
+            const emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+            const phonePattern = /^[0-9]{10}$/;
+
+            // Reset error messages
+            document.getElementById("fullnameError").textContent = "";
+            document.getElementById("ageError").textContent = "";
+            document.getElementById("appointDateError").textContent = "";
+            document.getElementById("emailError").textContent = "";
+            document.getElementById("phnoError").textContent = "";
+            document.getElementById("diseasesError").textContent = "";
+            document.getElementById("doctorError").textContent = "";
+            document.getElementById("addressError").textContent = "";
+
+            let isValid = true;
+
+            // Validate Full Name
+            if (fullname === "") {
+                document.getElementById("fullnameError").textContent = "Full Name is required.";
+                isValid = false;
+            }
+
+            // Validate Age
+            if (age === "" || isNaN(age) || age <= 0) {
+                document.getElementById("ageError").textContent = "Please enter a valid age.";
+                isValid = false;
+            }
+
+            // Validate Appointment Date
+            if (appointDate === "") {
+                document.getElementById("appointDateError").textContent = "Appointment date is required.";
+                isValid = false;
+            }
+
+            // Validate Email
+            if (!email.match(emailPattern)) {
+                document.getElementById("emailError").textContent = "Invalid email format.";
+                isValid = false;
+            }
+
+            // Validate Phone Number
+            if (!phno.match(phonePattern)) {
+                document.getElementById("phnoError").textContent = "Phone number must be 10 digits.";
+                isValid = false;
+            }
+
+            // Validate Diseases
+            if (diseases === "") {
+                document.getElementById("diseasesError").textContent = "Please specify your diseases.";
+                isValid = false;
+            }
+
+            // Validate Doctor Selection
+            if (doctor === "") {
+                document.getElementById("doctorError").textContent = "Please select a doctor.";
+                isValid = false;
+            }
+
+            // Validate Address
+            if (address === "") {
+                document.getElementById("addressError").textContent = "Address is required.";
+                isValid = false;
+            }
+
+            return isValid;
+        }
+    </script>
 </head>
 <body>
-    <%-- Include Navbar --%>
     <%@include file="component/navbar.jsp"%>
 
-    <%-- Redirect to login if the user is not logged in --%>
     <c:if test="${empty userObj}">
         <c:redirect url="user_login.jsp"></c:redirect>
     </c:if>
@@ -41,18 +121,13 @@
 
     <div class="container p-3">
         <div class="row">
-            <%-- Image Section --%>
             <div class="col-md-6 p-5">
                 <img src="img/doct.jpg" alt="Doctor" class="img-fluid rounded">
             </div>
-
-            <%-- Appointment Form Section --%>
             <div class="col-md-6">
                 <div class="card paint-card">
                     <div class="card-body">
                         <p class="text-center fs-3">User Appointment</p>
-
-                        <%-- Error or Success Messages --%>
                         <c:if test="${not empty errorMsg}">
                             <p class="fs-5 text-center text-danger">${errorMsg}</p>
                             <c:remove var="errorMsg" scope="session" />
@@ -62,17 +137,15 @@
                             <c:remove var="succMsg" scope="session" />
                         </c:if>
 
-                        <form class="row g-3" action="appAppointment" method="post">
-                            <%-- Hidden User ID Field --%>
+                        <form class="row g-3" action="appAppointment" method="post" onsubmit="return validateAppointmentForm();">
                             <input type="hidden" name="userid" value="${userObj.id}">
 
-                            <%-- Full Name Input --%>
                             <div class="col-md-6">
                                 <label for="fullname" class="form-label">Full Name</label>
-                                <input required type="text" id="fullname" class="form-control" name="fullname">
+                                <input id="fullname" name="fullname" type="text" class="form-control">
+                                <span id="fullnameError" class="error-message"></span>
                             </div>
 
-                            <%-- Gender Dropdown --%>
                             <div class="col-md-6">
                                 <label for="gender" class="form-label">Gender</label>
                                 <select id="gender" class="form-control" name="gender" required>
@@ -81,40 +154,39 @@
                                 </select>
                             </div>
 
-                            <%-- Age Input --%>
                             <div class="col-md-6">
                                 <label for="age" class="form-label">Age</label>
-                                <input required type="number" id="age" class="form-control" name="age">
+                                <input id="age" name="age" type="number" class="form-control">
+                                <span id="ageError" class="error-message"></span>
                             </div>
 
-                            <%-- Appointment Date Input --%>
                             <div class="col-md-6">
                                 <label for="appoint_date" class="form-label">Appointment Date</label>
-                                <input type="date" id="appoint_date" class="form-control" required name="appoint_date">
+                                <input id="appoint_date" name="appoint_date" type="date" class="form-control">
+                                <span id="appointDateError" class="error-message"></span>
                             </div>
 
-                            <%-- Email Input --%>
                             <div class="col-md-6">
                                 <label for="email" class="form-label">Email</label>
-                                <input required type="email" id="email" class="form-control" name="email">
+                                <input id="email" name="email" type="email" class="form-control">
+                                <span id="emailError" class="error-message"></span>
                             </div>
 
-                            <%-- Phone Number Input --%>
                             <div class="col-md-6">
                                 <label for="phno" class="form-label">Phone No</label>
-                                <input maxlength="10" required type="text" id="phno" class="form-control" name="phno">
+                                <input id="phno" name="phno" type="text" class="form-control">
+                                <span id="phnoError" class="error-message"></span>
                             </div>
 
-                            <%-- Diseases Input --%>
                             <div class="col-md-6">
                                 <label for="diseases" class="form-label">Diseases</label>
-                                <input required type="text" id="diseases" class="form-control" name="diseases">
+                                <input id="diseases" name="diseases" type="text" class="form-control">
+                                <span id="diseasesError" class="error-message"></span>
                             </div>
 
-                            <%-- Doctor Dropdown --%>
                             <div class="col-md-6">
                                 <label for="doctor" class="form-label">Doctor</label>
-                                <select id="doctor" required class="form-control" name="doct">
+                                <select id="doctor" name="doct" class="form-control">
                                     <option value="">--Select--</option>
                                     <%
                                     DoctorDao doctorDao = new DoctorDao(DBConnect.getConn());
@@ -128,15 +200,15 @@
                                     }
                                     %>
                                 </select>
+                                <span id="doctorError" class="error-message"></span>
                             </div>
 
-                            <%-- Address Text Area --%>
                             <div class="col-md-12">
                                 <label for="address" class="form-label">Full Address</label>
-                                <textarea required id="address" name="address" class="form-control" rows="3"></textarea>
+                                <textarea id="address" name="address" class="form-control" rows="3"></textarea>
+                                <span id="addressError" class="error-message"></span>
                             </div>
 
-                            <%-- Submit Button --%>
                             <div class="col-md-12 text-center">
                                 <button class="btn btn-success" type="submit">Submit</button>
                             </div>
@@ -147,7 +219,4 @@
         </div>
     </div>
 
-    <%-- Include Footer --%>
-    <%@include file="component/footer.jsp"%>
-</body>
-</html>
+    <%@include file
